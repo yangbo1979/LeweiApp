@@ -1,0 +1,107 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SensorWebActivity" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        
+        
+         >
+
+         <ImageView
+             android:id="@+id/catImageView"
+             android:layout_width="30dp"
+             android:layout_height="30dp"
+             android:layout_alignParentLeft="true"
+             android:layout_centerVertical="true"
+             android:src="@drawable/c21" />
+
+         <TextView
+             android:id="@+id/catTextView"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+             android:layout_toRightOf="@+id/catImageView"
+             android:text="@string/cat3"
+             android:textColor="#999999"
+             android:textSize="14sp" />
+
+         <TextView
+             android:id="@+id/TextView01"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignBaseline="@+id/sensorTextView"
+             android:layout_alignBottom="@+id/sensorTextView"
+             android:layout_toRightOf="@+id/catTextView"
+             android:text=" >> "
+             android:textColor="#999999"
+             android:textSize="14sp" />
+
+         <TextView
+             android:id="@+id/sensorTextView"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignBaseline="@+id/catTextView"
+             android:layout_alignBottom="@+id/catTextView"
+             android:layout_toRightOf="@+id/TextView01"
+             android:text="温度传感器"
+             android:textSize="14sp" />
+
+         <ImageView
+             android:id="@+id/selectorImageButton"
+             android:layout_width="18dp"
+             android:layout_height="18dp"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="5dp"
+             android:clickable="true"
+             android:onClick="selectSensor"
+             android:src="@drawable/list_icon" />
+
+         <TextView
+             android:id="@+id/selectorTextView"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignTop="@+id/selectorImageButton"
+             android:layout_marginRight="2dp"
+             android:layout_toLeftOf="@+id/selectorImageButton"
+             android:text="切换传感器"
+             android:textColor="#2D81A0"
+             android:textSize="14sp"
+              android:clickable="true"
+             android:onClick="selectSensor"
+             android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    
+
+    <FrameLayout
+        
+        android:layout_alignTop="@+id/mainWebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_centerHorizontal="true">
+         
+         <WebView
+        android:id="@+id/mainWebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+         <ProgressBar
+             android:id="@+id/loadingProgressBar"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:max="60"
+             android:indeterminateDrawable="@drawable/progressbar" 
+             android:layout_gravity="center" />
+
+    </FrameLayout>
+
+</RelativeLayout>

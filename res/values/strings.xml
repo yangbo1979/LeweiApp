@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">乐联网</string>
+    <string name="menu_settings">设置</string>
+    <string name="title_activity_login">乐联网</string>
+    <string name="strInputAccHint">输入账号</string>
+    <string name="strAccInputLabel">帐号</string>
+    <string name="strPswInputLabel">密码</string>
+    <string name="opt_remember">记住密码</string>
+    <string name="login">登 录</string>
+    <string name="title_activity_main">可控设备列表</string>
+    <string name="title_activity_sensor">查看传感器</string>
+    <string name="cat1">我的物联网</string>
+    <string name="cat2">报表统计</string>
+    <string name="cat3">短信报警</string>
+    <string name="cat4">专家指导</string>
+    <string name="c11">传感器列表</string>
+    <string name="c12">实时统计</string>
+    <string name="c13">反向控制</string>
+    <string name="c21">历史走势</string>
+    <string name="c22">数据分布</string>
+    <string name="c23">报警分析</string>
+    <string name="c31">通讯录</string>
+    <string name="c32">群发短信</string>
+    <string name="c33">报警历史</string>
+    <string name="c41">专家建议</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_buddy">BuddyActivity</string>
+    <string name="title_activity_sensor_web">SensorWebActivity</string>
+    <string name="title_activity_sensor_selector">SensorSelectorActivity</string>
+    <string name="url_c12">/m/user/doc</string>
+    <string name="url_c21">/m/user/doc</string>
+    <string name="url_c22">/m/user/column</string>
+    <string name="url_c23">/m/user/pie</string>
+    <string name="url_c31">/m/user/contact</string>
+    <string name="url_c32">/m/user/sms</string>
+    <string name="url_c33">/m/user/alarmhistory</string>
+    <string name="title_activity_control">ControlActivity</string>
+
+</resources>

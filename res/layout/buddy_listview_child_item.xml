@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dip" >
+
+    <ImageView
+        android:id="@+id/buddy_listview_child_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/wlw_data_temp" />
+
+    <TextView
+        android:id="@+id/buddy_listview_child_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/buddy_listview_child_avatar"
+        android:text="昵称"
+        android:textColor="#969696"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/buddy_listview_child_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buddy_listview_child_name"
+        android:layout_alignParentBottom="true"
+        android:text="583.%"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/buddy_listview_child_status"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"
+        android:src="@drawable/online" />
+
+    <TextView
+        android:id="@+id/lastUpdateTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/buddy_listview_child_status"
+        android:text="583.%"
+        android:textColor="#bbbbbb"
+        android:textSize="10sp" />
+
+</RelativeLayout>
