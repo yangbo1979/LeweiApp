@@ -89,15 +89,23 @@ public class ListActivity extends Activity {
 				if (result.successful) {
 					Type type = new TypeToken<jResult<jSensor>>() {
 					}.getType();
-					jResult<jSensor> r2 = gson.fromJson(result.data, type);
-					if (r2.successful) {
-						// 重新加载数据
-						mHandler.sendEmptyMessage(0);
-					} else {
-						new AlertDialog.Builder(ListActivity.this)
-								.setIcon(R.drawable.warning).setTitle("失败")
-								.setPositiveButton("确定", null)
-								.setMessage(r2.message).create().show();
+//					jResult<jSensor> r2 = gson.fromJson(result.data, type);
+					try
+					{
+						if (result.successful) {
+							// 重新加载数据
+							mHandler.sendEmptyMessage(0);
+						} else {
+							new AlertDialog.Builder(ListActivity.this)
+									.setIcon(R.drawable.warning).setTitle("失败")
+									.setPositiveButton("确定", null)
+	//								.setMessage(r2.message).create()
+									.show();
+						}
+					}
+					catch(Exception e)
+					{
+						e.printStackTrace();
 					}
 				} else {
 					new AlertDialog.Builder(ListActivity.this)
