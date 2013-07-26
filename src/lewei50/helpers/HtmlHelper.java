@@ -10,6 +10,7 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -111,6 +112,7 @@ public class HtmlHelper {
 
 		return gt;
 	}
+	
 
 	// /get方式获取网关api数据
 	public static jResult<String> GetUrlJsonData(String f, String[] p) {
@@ -118,6 +120,9 @@ public class HtmlHelper {
 		jResult<String> result = new jResult<String>();
 		result.successful = false;
 		String linkString = "?";
+		//add multi gateway support,
+		//code add by yangbo,2013.7.26
+		
 		if (API.indexOf("?") > -1)
 			linkString = "&";
 		String urlString = API + linkString + "userkey=" + UserKey + "&f=" + f;
@@ -229,24 +234,58 @@ public class HtmlHelper {
 		jResult<List<jSensor>> rr = new jResult<List<jSensor>>();
 
 		jResult<String> result;
-		if (RequestType.equals("get"))
-			result = HtmlHelper.GetUrlJsonData("getAllSensors", null);
-		else {
-			result = HtmlHelper.PostUrlJsonData("getAllSensors", null);
-		}
+		for(int i=0;i<App.GatewayList.size();i++)
+		{
+			gateway gw = App.GatewayList.get(i);
+			try
+			{
+				if(gw.apiAddress.equals("null"))continue;
+//				System.out.println(gw.apiAddress);
+				HtmlHelper.API = gw.apiAddress;
+				if (RequestType.equals("get"))
+					result = HtmlHelper.GetUrlJsonData("getAllSensors", null);
+				else {
+					result = HtmlHelper.PostUrlJsonData("getAllSensors", null);
+				}
 
-		Type type = new TypeToken<jResult<List<jSensor>>>() {
-		}.getType();
+				Type type = new TypeToken<jResult<List<jSensor>>>() {
+				}.getType();
 
-		Gson gson = new Gson();
-		if (result.successful == true) {
+				Gson gson = new Gson();
+				if (result.successful == true) {
+//					System.out.println("rr:");
+//					System.out.println(result.data);
+//					System.out.print(rr.successful);
+					if(rr.successful==null)
+					{
+						rr = gson.fromJson(result.data, type);
+						for(int j = 0;j<rr.data.size();j++)
+						{
+							rr.data.get(j).apiAddress = gw.apiAddress;
+						}
+					}
+					else 
+					{
+						jResult<List<jSensor>> rrTemp = gson.fromJson(result.data, type);
+						for(int j = 0;j<rrTemp.data.size();j++)
+						{
+							rrTemp.data.get(j).apiAddress = gw.apiAddress;
+							rr.data.add(rrTemp.data.get(j));
+						}
+					}
+					
 
-			rr = gson.fromJson(result.data, type);
+				} else {
+					rr.successful = false;
+					rr.message = result.message;
 
-		} else {
-			rr.successful = false;
-			rr.message = result.message;
-
+				}
+			}
+			catch(Exception e)
+			{
+				System.out.println(i+"wrong");
+			}
+			
 		}
 		return rr;
 	}

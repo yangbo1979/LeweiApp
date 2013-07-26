@@ -77,8 +77,11 @@ public class ListActivity extends Activity {
 				}
 				jResult<String> result;
 				if (requestType.equals("get")) {
+					HtmlHelper.API  = oo.get("apiAddress").toString();
 					result = HtmlHelper.GetUrlJsonData("updateSensor",
 							new String[] { id, value });
+//					System.out.println("API");
+//					System.out.println(HtmlHelper.API);
 				} else {
 					jSensor js = new jSensor();
 					js.id = id;
@@ -145,8 +148,13 @@ public class ListActivity extends Activity {
 
 		List<jSensor> sList = new ArrayList<jSensor>();
 		if (reload == false)
+		{
+			System.out.println("reload == false");
 			sList = ControlActivity.controllerList;
+			System.out.println(sList.size());
+		}
 		else {
+			System.out.println("reload != false");
 			sList = HtmlHelper.getAllSensors().data;
 		}
 		for (jSensor ss : sList) {
@@ -154,6 +162,7 @@ public class ListActivity extends Activity {
 			map.put("id", ss.id);
 			map.put("name", ss.name);
 			map.put("value", ss.value);
+			map.put("apiAddress", ss.apiAddress);
 			if (Integer.parseInt(ss.value) == 0)
 				map.put("valueImg", R.drawable.offline);
 			else

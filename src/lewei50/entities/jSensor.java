@@ -11,4 +11,8 @@ public class jSensor {
 	public String value;
 
 	public String status;
+	
+	//code added by yangbo ,2013.7.26
+	public String apiAddress;
+	//end add
 }

@@ -61,6 +61,11 @@ public class App extends Application {
 				gt.typeName = gatewayObj.getString("typeName");
 				gt.description = gatewayObj.getString("description");
 				gt.sensors = sensors;
+				
+				//code added by yangbo @2013.7.26
+				gt.apiAddress = gatewayObj.getString("apiAddress");
+				gt.apiAddressInternet = gatewayObj.getString("apiAddressInternet");
+				//end code add
 
 				list.add(gt);
 			}

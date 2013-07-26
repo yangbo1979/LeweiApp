@@ -241,6 +241,9 @@ public class ControlActivity extends Activity {
 						ListActivity.class);
 				intent.putExtra("requestType", requestTypeSpinner
 						.getSelectedItem().toString());
+
+//				System.out.println("result.data:");
+//				System.out.println(result.data.toString());
 				ControlActivity.controllerList = result.data;
 				startActivity(intent);
 
