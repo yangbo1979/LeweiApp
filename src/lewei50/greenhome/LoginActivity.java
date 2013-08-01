@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.view.Window;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
@@ -31,6 +32,8 @@ public class LoginActivity extends Activity {
 	private EditText textUserName;
 
 	private EditText textPassword;
+	
+	private CheckBox cbAutoLogin;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class LoginActivity extends Activity {
 
 		textUserName = (EditText) findViewById(R.id.login_edit_account);
 		textPassword = (EditText) findViewById(R.id.login_edit_pwd);
+		cbAutoLogin = (CheckBox) findViewById(R.id.login_cb_autoLogin);
 		loadDefaultUserNameAndPassword();
 
 	}
@@ -50,11 +54,13 @@ public class LoginActivity extends Activity {
 		// SharedPreferences.Editor editor=sharedPreferences.edit();
 		String usernameString = sharedPreferences.getString("username", "");
 		String passwordString = sharedPreferences.getString("password", "");
+		boolean bAutoLogin = sharedPreferences.getBoolean("autoLogin", false);
 		if (usernameString != "")
 			textUserName.setText(usernameString);
 		if (passwordString != "")
 			textPassword.setText(passwordString);
-
+		cbAutoLogin.setChecked(bAutoLogin);
+		if (bAutoLogin)this.findViewById(R.id.login_btn_login).performClick();
 	}
 
 	public void setDefaultUserNameAndPassword() {
@@ -63,6 +69,7 @@ public class LoginActivity extends Activity {
 		SharedPreferences.Editor editor = sharedPreferences.edit();
 		editor.putString("username", textUserName.getText().toString());
 		editor.putString("password", textPassword.getText().toString());
+		editor.putBoolean("autoLogin", cbAutoLogin.isChecked());
 		editor.commit();
 
 	}
@@ -105,9 +112,9 @@ public class LoginActivity extends Activity {
 		protected void onPostExecute(Boolean result) {
 			MyDialog.cancel();
 			if (result) {
-				// 验证成功，打开传感器列表
+				// 验证成功，直接进入反向控制列表
 				Intent intent = new Intent(LoginActivity.this,
-						MainActivity.class);
+						ControlActivity.class);
 				startActivity(intent);
 			} else {
 				Dialog alertDialog = new AlertDialog.Builder(LoginActivity.this)

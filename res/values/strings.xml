@@ -37,5 +37,6 @@
     <string name="url_c32">/m/user/sms</string>
     <string name="url_c33">/m/user/alarmhistory</string>
     <string name="title_activity_control">ControlActivity</string>
+    <string name="opt_autologin">自动登录</string>
 
 </resources>
